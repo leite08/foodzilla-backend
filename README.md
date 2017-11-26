@@ -1,4 +1,4 @@
-# Foodzilla Backend ![Build Status](https://travis-ci.org/leite08/foodzilla-backend.svg?branch=master)
+# Foodzilla Backend ![Build Status](https://travis-ci.org/leite08/foodzilla-backend.svg?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f311c2159c8141a98c1a042b67823efc)](https://www.codacy.com/app/leite08/foodzilla-backend?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=leite08/foodzilla-backend&amp;utm_campaign=Badge_Grade)
 ## Java and String Boot
 
 This application serves the API of Foodzilla, offering endpoints to be called by the frontend.
@@ -44,6 +44,12 @@ After forking and cloning the repo:
 Will start the application in background with logs on file.
 
 To watch the logs execute this on the deploy folder: `./logs.sh`
+
+There is a Swagger UI available on:
+
+	<install-url>/swagger-ui.html
+
+It can be used to see the API contracts/methods and make calls to the running application.
 
 ## Team
 
