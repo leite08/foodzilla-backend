@@ -48,6 +48,12 @@ Will start the application in background with logs on file.
 
 To watch the logs execute this on the deploy folder: `./logs.sh`
 
+There is a Swagger UI available on:
+
+	<install-url>/swagger-ui.html
+
+It can be used to see the API contracts/methods and make calls to the running application.
+
 ## Team
 
 - Otávio Soares - https://github.com/otaviosoares
