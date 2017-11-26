@@ -26,13 +26,14 @@ Install Maven:
 	    
 After forking and cloning the repo:
 
-	(temporarily)
-    cd foodzilla-backend/deploy/
+    cd foodzilla-backend
+    mvn install
+    cd target/deploy/
     ./start.sh
 
 Will start the application in background with logs on file.
 
-To watch the logs: `./logs.sh`
+To watch the logs execute this on the deploy folder: `./logs.sh`
 
 ## Team
 
