@@ -1,4 +1,7 @@
 # Foodzilla Backend ![Build Status](https://travis-ci.org/leite08/foodzilla-backend.svg?branch=master)
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f311c2159c8141a98c1a042b67823efc)](https://www.codacy.com/app/leite08/foodzilla-backend?utm_source=github.com&utm_medium=referral&utm_content=leite08/foodzilla-backend&utm_campaign=badger)
+
 ## Java and String Boot
 
 This application serves the API of Foodzilla, offering endpoints to be called by the frontend.
