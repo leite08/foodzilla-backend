@@ -3,6 +3,10 @@
 
 This application serves the API of Foodzilla, offering endpoints to be called by the frontend.
 
+Depends on [Spoonacular's food information API](https://spoonacular.com), delivered by [Mashape](https://market.mashape.com).
+You need to subscribe to Mashape and obtain a key (`X-Mashape-Key`), will need that later before running the application.
+
+
 Built for the VanHack Week Nov/2017:
 http://www.vanhack.com/week/
 
@@ -24,6 +28,12 @@ Install Maven:
 
 	https://maven.apache.org/install.html
 	    
+Setup the environment variable `foodzillaApiKey` with the key from Mashape, either through (recommended):
+
+	export foodzillaApiKey=<the-value-of-the-key>
+	
+or during the execution of java, using the `-D<variableName>=<value>` option. 
+
 After forking and cloning the repo:
 
     cd foodzilla-backend

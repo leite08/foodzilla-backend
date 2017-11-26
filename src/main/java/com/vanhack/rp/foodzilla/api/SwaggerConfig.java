@@ -25,12 +25,12 @@ public class SwaggerConfig {
     }
     
     private ApiInfo metaData() {
-        ApiInfo apiInfo = new ApiInfo(
+        @SuppressWarnings("deprecation")
+		ApiInfo apiInfo = new ApiInfo(
                 "Foodzilla API",
                 "Foodzilla API delivering services for the Foodzilla applications.",
                 "1.0",
                 "",
-//                new Contact("Byond", "https://getbyond.com", "contact@getbyond.com"),
                 "",
                 "",
                 "");

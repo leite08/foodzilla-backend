@@ -10,8 +10,9 @@ import com.vanhack.rp.foodzilla.security.AuthenticationResponse;
 public class SecurityService {
 
 	private Logger log = Logger.getLogger(SecurityService.class);
-
+	
 	public AuthenticationResponse authenticate(AuthenticationRequest authRequest) {
+		log.warn("Authentication service called with no default implementation");
 		return null;
 	}
 
