@@ -1,4 +1,4 @@
-# Foodzilla Backend
+# Foodzilla Backend ![Build Status](https://travis-ci.org/leite08/foodzilla-backend.svg?branch=master)
 ## Java and String Boot
 
 This application serves the API of Foodzilla, offering endpoints to be called by the frontend.
