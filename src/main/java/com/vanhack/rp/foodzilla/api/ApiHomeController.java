@@ -24,7 +24,7 @@ public class ApiHomeController  {
 		String json = JSON.std
 				  .composeString()
 				  .startObject()
-				    .put("title", "Filezilla API")
+				    .put("title", "Foodzilla API")
 				    .put("version", "1.0")
 				    .put("timestamp", Instant.now().toString())
 				  .end()

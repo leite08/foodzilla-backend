@@ -6,15 +6,11 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RecipeTO {
+public class IngredientTO {
 	
 	public String id;
-	public String title;
 	public String image;
-	public String imageType;
-	public Integer usedIngredientCount;
-	public Integer missedIngredientCount;
-	public Integer likes;
-	public Integer readyInMinutes;
-	public String instructions;
+	public String name;
+	public String amount;
+	public String unit;
 }
