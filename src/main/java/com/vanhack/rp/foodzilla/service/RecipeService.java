@@ -49,7 +49,7 @@ public class RecipeService {
 					.queryString("ranking", (list.minimizeMissingIngredients?2:1))
 					.queryString("number", list.getNumber())
 					.asJson();
-			
+			log.debug("[getRecipesFor] got response from the server: "+apiResponse.getStatus());
 			if (apiResponse != null && apiResponse.getStatus() == HttpServletResponse.SC_OK) {
 				JSONArray array = apiResponse.getBody().getArray();
 			    for (int i = 0, size = array.length(); i < size; i++) {
@@ -83,7 +83,8 @@ public class RecipeService {
 					.header("X-Mashape-Key", apiKey)
 					.header("Accept", "application/json")
 					.asJson();
-			
+			log.debug("[getRecipes] got response from the server: "+apiResponse.getStatus());
+
 			if (apiResponse != null && apiResponse.getStatus() == HttpServletResponse.SC_OK) {
 				JSONObject object = apiResponse.getBody().getObject();
 				ObjectMapper mapper = new ObjectMapper();
@@ -99,15 +100,16 @@ public class RecipeService {
 			    	IngredientTO ingredient = mapper.readValue(item.toString(), IngredientTO.class);
 			    	recipe.extendedIngredients.add(ingredient);
 			    }
-				log.debug(String.format("returning with recipe: ", recipe));
+				log.debug(String.format("[getRecipes] returning with recipe: ", recipe));
 				return recipe;
 			    
 			} else {
-				log.debug("Failed to retrieve the list of recipes");
+				log.debug("[getRecipes] Failed to retrieve the list of recipes");
 			}
 		} catch (UnirestException | IOException e) {
 			log.error("Exception loading list of recipes", e);
 		}
+		log.debug("[getRecipes] Returning with no recipe");
 		return null;
 	}
 }

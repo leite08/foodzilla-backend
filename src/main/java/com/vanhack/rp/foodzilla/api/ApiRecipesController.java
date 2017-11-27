@@ -44,7 +44,8 @@ public class ApiRecipesController extends ApiAbstractCloudController {
 					+ "maximize the user's ingredients.") boolean minimizeMissingIngredients,
 			@RequestParam(required=false) @ApiParam("Maximum number of recipes to return (up to 50)") Integer numberOfResults,
 			HttpServletResponse response) throws JSONObjectException, JsonProcessingException, IOException {
-		log.debug("[searchByIngredients] running...");
+		log.debug(String.format("[searchByIngredients] running with (username:%s, ingredients:%s, minimizeMissingIngredients:%b, numberOfResults:%d)",
+				username, (ingredients==null?null:ingredients.size()), minimizeMissingIngredients, numberOfResults));
 		
 		ListOfIngredientsTO listOfIngredients = new ListOfIngredientsTO();
 		listOfIngredients.ingredients = ingredients;
@@ -52,7 +53,12 @@ public class ApiRecipesController extends ApiAbstractCloudController {
 		listOfIngredients.numberOfResults = numberOfResults;
 		listOfIngredients.username = username;
 		
-		List<RecipeTO> recipes = service.getRecipesFor(listOfIngredients);
+		List<RecipeTO> recipes = null;
+		try {
+			recipes = service.getRecipesFor(listOfIngredients);
+		} catch (Exception e) {
+			log.error("[searchByIngredients] exception getting list of recipies", e);
+		}
 		
 		log.debug(String.format("[searchByIngredients] returning with %s recipes", (recipes!=null?recipes.size():null)));
 		return recipes;
@@ -64,9 +70,14 @@ public class ApiRecipesController extends ApiAbstractCloudController {
 			@RequestParam(required=false) @ApiParam("Logged in username/login") String username,
 			@PathVariable("id") @ApiParam("Identification of the recipe") String id,
 			HttpServletResponse response) throws JSONObjectException, JsonProcessingException, IOException {
-		log.debug("[getRecipe] running...");
+		log.debug("[getRecipe] running with id:" + id);
 		
-		RecipeExtendedTO recipe = service.getRecipe(id);
+		RecipeExtendedTO recipe = null;
+		try {
+			recipe = service.getRecipe(id);
+		} catch (Exception e) {
+			log.error("[getRecipe] exception getting list of recipies", e);
+		}
 		
 		log.debug(String.format("[getRecipe] returning with recipe: %s", recipe));
 		return recipe;
