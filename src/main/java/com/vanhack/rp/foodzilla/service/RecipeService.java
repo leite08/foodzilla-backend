@@ -30,7 +30,7 @@ public class RecipeService {
 	
 	// Do not get from the properties, it's a authentication key, cannot be on the repository
 	// @Value("${integration.api.key}")
-	private String apiKey = System.getenv("foodzilla.apiKey");
+	private String apiKey = System.getenv("foodzillaApiKey");
 
 	public List<RecipeTO> getRecipesFor(ListOfIngredientsTO list) {
 		if (list == null) {
