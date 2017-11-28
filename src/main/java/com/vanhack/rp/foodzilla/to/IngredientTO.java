@@ -1,4 +1,4 @@
-package com.vanhack.rp.foodzilla.api.to;
+package com.vanhack.rp.foodzilla.to;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

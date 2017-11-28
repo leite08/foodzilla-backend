@@ -1,4 +1,4 @@
-package com.vanhack.rp.foodzilla.api.to;
+package com.vanhack.rp.foodzilla.to;
 
 import java.util.List;
 

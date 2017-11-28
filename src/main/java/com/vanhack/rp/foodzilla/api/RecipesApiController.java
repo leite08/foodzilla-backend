@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.jr.ob.JSONObjectException;
-import com.vanhack.rp.foodzilla.api.to.ListOfIngredientsTO;
-import com.vanhack.rp.foodzilla.api.to.RecipeExtendedTO;
-import com.vanhack.rp.foodzilla.api.to.RecipeTO;
 import com.vanhack.rp.foodzilla.service.RecipeService;
+import com.vanhack.rp.foodzilla.to.RecipeExtendedTO;
+import com.vanhack.rp.foodzilla.to.RecipeTO;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,9 +26,10 @@ import io.swagger.annotations.ApiParam;
 @RestController
 @RequestMapping("/api/recipes")
 @Api(description="Recipes Service")
-public class ApiRecipesController extends ApiAbstractCloudController {
+public class RecipesApiController extends AbstractApiController {
 
-	private Logger log = Logger.getLogger(ApiRecipesController.class);
+	// TODO: move most logging commands to trace
+	private Logger log = Logger.getLogger(RecipesApiController.class);
 	
 	@Autowired
 	private RecipeService service;
@@ -37,6 +37,7 @@ public class ApiRecipesController extends ApiAbstractCloudController {
 	@RequestMapping(path="/", method=RequestMethod.GET, produces="application/json")
 	@ApiOperation("List recipes by ingredients")
 	List<RecipeTO> searchByIngredients(
+			@RequestParam(required=true) @ApiParam("Authentication token") String authToken,
 			@RequestParam(required=false) @ApiParam("Logged in username/login (future use)") String username,
 			@RequestParam(required=true) @ApiParam("List of ingredients to match recipes with.") List<String> ingredients,
 			@RequestParam(required=false) @ApiParam("Should the service focus o minimize missing "
@@ -47,37 +48,28 @@ public class ApiRecipesController extends ApiAbstractCloudController {
 		log.debug(String.format("[searchByIngredients] running with (username:%s, ingredients:%s, minimizeMissingIngredients:%b, numberOfResults:%d)",
 				username, (ingredients==null?null:ingredients.size()), minimizeMissingIngredients, numberOfResults));
 		
-		ListOfIngredientsTO listOfIngredients = new ListOfIngredientsTO();
-		listOfIngredients.ingredients = ingredients;
-		listOfIngredients.minimizeMissingIngredients = minimizeMissingIngredients;
-		listOfIngredients.numberOfResults = numberOfResults;
-		listOfIngredients.username = username;
+		validateAuthenticationToken(authToken);
 		
-		List<RecipeTO> recipes = null;
-		try {
-			recipes = service.getRecipesFor(listOfIngredients);
-		} catch (Exception e) {
-			log.error("[searchByIngredients] exception getting list of recipies", e);
-		}
+		int maxAmountRecipes = numberOfResults == null ? -1 : numberOfResults;
 		
-		log.debug(String.format("[searchByIngredients] returning with %s recipes", (recipes!=null?recipes.size():null)));
+		List<RecipeTO> recipes = service.getRecipesByIngredients(ingredients, maxAmountRecipes, minimizeMissingIngredients);
+		
+		log.debug(String.format("[searchByIngredients] returning with %s recipes", (recipes != null ? recipes.size() : null)));
 		return recipes;
 	}
 
 	@RequestMapping(path="/{id}", method=RequestMethod.GET, produces="application/json")
 	@ApiOperation("Get information on recipe")
 	RecipeExtendedTO getRecipe(
+			@RequestParam(required=true) @ApiParam("Authentication token") String authToken,
 			@RequestParam(required=false) @ApiParam("Logged in username/login") String username,
 			@PathVariable("id") @ApiParam("Identification of the recipe") String id,
 			HttpServletResponse response) throws JSONObjectException, JsonProcessingException, IOException {
 		log.debug("[getRecipe] running with id:" + id);
-		
-		RecipeExtendedTO recipe = null;
-		try {
-			recipe = service.getRecipe(id);
-		} catch (Exception e) {
-			log.error("[getRecipe] exception getting list of recipies", e);
-		}
+
+		validateAuthenticationToken(authToken);
+
+		RecipeExtendedTO recipe = service.getRecipe(id);;
 		
 		log.debug(String.format("[getRecipe] returning with recipe: %s", recipe));
 		return recipe;

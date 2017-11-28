@@ -14,9 +14,9 @@ import com.fasterxml.jackson.jr.ob.JSONObjectException;
 
 @RestController
 @RequestMapping("/api")
-public class ApiHomeController  {
+public class HomeApiController  {
 	
-	protected Logger log = Logger.getLogger(ApiHomeController.class);
+	protected Logger log = Logger.getLogger(HomeApiController.class);
 	
 	@RequestMapping(name="/", method = RequestMethod.GET)
 	String info() throws JSONObjectException, JsonProcessingException, IOException {

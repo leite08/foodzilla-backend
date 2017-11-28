@@ -3,7 +3,7 @@
 
 This application serves the API of Foodzilla, offering endpoints to be called by the frontend.
 
-Depends on [Spoonacular's food information API](https://spoonacular.com), delivered by [Mashape](https://market.mashape.com).
+Depends on [Spoonacular's food information API](https://spoonacular.com/food-api), delivered by [Mashape](https://market.mashape.com).
 You need to subscribe to Mashape and obtain a key (`X-Mashape-Key`), will need that later before running the application.
 
 

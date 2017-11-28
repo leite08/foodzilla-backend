@@ -6,9 +6,10 @@ import org.springframework.stereotype.Service;
 public class OrderService {
 
 //	private static Logger log = Logger.getLogger(OrderService.class);
-//
-//	public Page<OrderTO> getAll(Pageable pageable) {
-//		return new PageImpl<OrderTO>(new ArrayList<>());
+
+	// TODO: implement
+//	public boolean placeOrder(OrderTO order) {
+		// save the order on the repository 
 //	}
 
 }

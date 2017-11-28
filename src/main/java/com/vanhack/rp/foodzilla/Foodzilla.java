@@ -2,12 +2,10 @@ package com.vanhack.rp.foodzilla;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.mashape.unirest.http.Unirest;
 
 @SpringBootApplication
-@EnableScheduling
 public class Foodzilla {
 
 	public static void main(String[] args) throws Exception {
@@ -19,5 +17,4 @@ public class Foodzilla {
 		super.finalize();
 		Unirest.shutdown();
 	}
-
 }

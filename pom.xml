@@ -13,6 +13,7 @@
         <swagger.version>2.6.1</swagger.version>
         <swagger-ui.version>2.6.1</swagger-ui.version>
         <jackson-jr.version>2.5.3</jackson-jr.version>
+        <!-- TODO: move to Log4j v2 -->
     	<log4j.version>1.2.17</log4j.version>
     	<slf4j.version>1.7.13</slf4j.version>
     	<apache.commons.version>3.5</apache.commons.version>
