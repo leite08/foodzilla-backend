@@ -36,7 +36,7 @@ public class RecipesApiController extends AbstractApiController {
 
 	@RequestMapping(path="/", method=RequestMethod.GET, produces="application/json")
 	@ApiOperation("List recipes by ingredients")
-	List<RecipeTO> searchByIngredients(
+	public List<RecipeTO> searchByIngredients(
 //			@RequestParam(required=true) @ApiParam("Authentication token") String authToken,
 			@RequestParam(required=false) @ApiParam("Logged in username/login (future use)") String username,
 			@RequestParam(required=true) @ApiParam("List of ingredients to match recipes with.") List<String> ingredients,
@@ -60,7 +60,7 @@ public class RecipesApiController extends AbstractApiController {
 
 	@RequestMapping(path="/{id}", method=RequestMethod.GET, produces="application/json")
 	@ApiOperation("Get information on recipe")
-	RecipeExtendedTO getRecipe(
+	public RecipeExtendedTO getRecipe(
 //			@RequestParam(required=true) @ApiParam("Authentication token") String authToken,
 			@RequestParam(required=false) @ApiParam("Logged in username/login") String username,
 			@PathVariable("id") @ApiParam("Identification of the recipe") String id,
@@ -69,7 +69,7 @@ public class RecipesApiController extends AbstractApiController {
 
 //		validateAuthenticationToken(authToken);
 
-		RecipeExtendedTO recipe = service.getRecipe(id);;
+		RecipeExtendedTO recipe = service.getRecipe(id);
 		
 		log.debug(String.format("[getRecipe] returning with recipe: %s", recipe));
 		return recipe;

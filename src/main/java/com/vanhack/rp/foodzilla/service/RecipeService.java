@@ -62,7 +62,8 @@ public class RecipeService {
 			List<RecipeTO> recipes = new ArrayList<>();
 			if (apiResponse != null && apiResponse.getStatus() == HttpServletResponse.SC_OK) {
 				JSONArray array = apiResponse.getBody().getArray();
-				for (int i = 0, size = array.length(); i < size; i++) {
+				int size = array.length();
+				for (int i = 0; i < size; i++) {
 					JSONObject object = array.getJSONObject(i);
 					ObjectMapper mapper = new ObjectMapper();
 					RecipeTO recipe = mapper.readValue(object.toString(), RecipeTO.class);
@@ -91,7 +92,9 @@ public class RecipeService {
 		try {
 			// TODO: use Asynchronous Requests (http://unirest.io/java)
 			HttpResponse<JsonNode> apiResponse = Unirest.get(apiUrl + recipeDetailsEndpoint)
-					.header("X-Mashape-Key", apiKey).header("Accept", "application/json").asJson();
+					.header("X-Mashape-Key", apiKey)
+					.header("Accept", "application/json")
+					.asJson();
 			log.debug("[getRecipes] got response from the server: " + apiResponse.getStatus());
 
 			if (apiResponse != null && apiResponse.getStatus() == HttpServletResponse.SC_OK) {
@@ -104,7 +107,8 @@ public class RecipeService {
 				if (jsonArray != null && jsonArray.length() > 0) {
 					recipe.extendedIngredients = new ArrayList<>();
 				}
-				for (int i = 0, size = jsonArray.length(); i < size; i++) {
+				int size = jsonArray.length();
+				for (int i = 0; i < size; i++) {
 					JSONObject item = jsonArray.getJSONObject(i);
 					IngredientTO ingredient = mapper.readValue(item.toString(), IngredientTO.class);
 					recipe.extendedIngredients.add(ingredient);

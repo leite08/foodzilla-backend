@@ -19,7 +19,7 @@ public class HomeApiController  {
 	protected Logger log = Logger.getLogger(HomeApiController.class);
 	
 	@RequestMapping(name="/", method = RequestMethod.GET)
-	String info() throws JSONObjectException, JsonProcessingException, IOException {
+	public String info() throws JSONObjectException, JsonProcessingException, IOException {
 		log.debug("Api home running...");
 		String json = JSON.std
 				  .composeString()
