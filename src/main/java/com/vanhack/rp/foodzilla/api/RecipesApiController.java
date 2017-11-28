@@ -37,7 +37,7 @@ public class RecipesApiController extends AbstractApiController {
 	@RequestMapping(path="/", method=RequestMethod.GET, produces="application/json")
 	@ApiOperation("List recipes by ingredients")
 	List<RecipeTO> searchByIngredients(
-			@RequestParam(required=true) @ApiParam("Authentication token") String authToken,
+//			@RequestParam(required=true) @ApiParam("Authentication token") String authToken,
 			@RequestParam(required=false) @ApiParam("Logged in username/login (future use)") String username,
 			@RequestParam(required=true) @ApiParam("List of ingredients to match recipes with.") List<String> ingredients,
 			@RequestParam(required=false) @ApiParam("Should the service focus o minimize missing "
@@ -48,7 +48,7 @@ public class RecipesApiController extends AbstractApiController {
 		log.debug(String.format("[searchByIngredients] running with (username:%s, ingredients:%s, minimizeMissingIngredients:%b, numberOfResults:%d)",
 				username, (ingredients==null?null:ingredients.size()), minimizeMissingIngredients, numberOfResults));
 		
-		validateAuthenticationToken(authToken);
+//		validateAuthenticationToken(authToken);
 		
 		int maxAmountRecipes = numberOfResults == null ? -1 : numberOfResults;
 		
@@ -61,13 +61,13 @@ public class RecipesApiController extends AbstractApiController {
 	@RequestMapping(path="/{id}", method=RequestMethod.GET, produces="application/json")
 	@ApiOperation("Get information on recipe")
 	RecipeExtendedTO getRecipe(
-			@RequestParam(required=true) @ApiParam("Authentication token") String authToken,
+//			@RequestParam(required=true) @ApiParam("Authentication token") String authToken,
 			@RequestParam(required=false) @ApiParam("Logged in username/login") String username,
 			@PathVariable("id") @ApiParam("Identification of the recipe") String id,
 			HttpServletResponse response) throws JSONObjectException, JsonProcessingException, IOException {
 		log.debug("[getRecipe] running with id:" + id);
 
-		validateAuthenticationToken(authToken);
+//		validateAuthenticationToken(authToken);
 
 		RecipeExtendedTO recipe = service.getRecipe(id);;
 		
