@@ -21,8 +21,8 @@ public class Foodzilla {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-            	// TODO: define allowed origins and allow access only from them 
-                registry.addMapping("/api/*").allowedOrigins("*");
+            	// TODO: define allowed origins (UI) and allow access only from them 
+                registry.addMapping("/**").allowedOrigins("*");
             }
         };
     }
